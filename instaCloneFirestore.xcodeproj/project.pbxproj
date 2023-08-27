@@ -21,6 +21,10 @@
 		9EC120652A9A768000F0BFBD /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC120642A9A768000F0BFBD /* ProfileController.swift */; };
 		9EC120672A9B171900F0BFBD /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC120662A9B171900F0BFBD /* FeedCell.swift */; };
 		9EC120692A9B235E00F0BFBD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC120682A9B235E00F0BFBD /* Extensions.swift */; };
+		9EC1206C2A9B569500F0BFBD /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC1206B2A9B569500F0BFBD /* LoginController.swift */; };
+		9EC1206E2A9B56A400F0BFBD /* RegisterationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC1206D2A9B56A400F0BFBD /* RegisterationController.swift */; };
+		9EC120702A9B651500F0BFBD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC1206F2A9B651500F0BFBD /* CustomTextField.swift */; };
+		9EC120722A9B981B00F0BFBD /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC120712A9B981B00F0BFBD /* AuthenticationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		9EC120642A9A768000F0BFBD /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		9EC120662A9B171900F0BFBD /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		9EC120682A9B235E00F0BFBD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9EC1206B2A9B569500F0BFBD /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		9EC1206D2A9B56A400F0BFBD /* RegisterationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterationController.swift; sourceTree = "<group>"; };
+		9EC1206F2A9B651500F0BFBD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		9EC120712A9B981B00F0BFBD /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				9EC120662A9B171900F0BFBD /* FeedCell.swift */,
+				9EC1206F2A9B651500F0BFBD /* CustomTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,6 +116,7 @@
 		9EC120562A9A741400F0BFBD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9EC120712A9B981B00F0BFBD /* AuthenticationViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -114,6 +124,7 @@
 		9EC120572A9A741800F0BFBD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9EC1206A2A9B567900F0BFBD /* Authentication */,
 				9EC1205A2A9A74E700F0BFBD /* MainTabController.swift */,
 				9EC1205C2A9A763C00F0BFBD /* FeedController.swift */,
 				9EC1205E2A9A765100F0BFBD /* SearchController.swift */,
@@ -137,6 +148,15 @@
 				9EC120682A9B235E00F0BFBD /* Extensions.swift */,
 			);
 			name = Utilis;
+			sourceTree = "<group>";
+		};
+		9EC1206A2A9B567900F0BFBD /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				9EC1206B2A9B569500F0BFBD /* LoginController.swift */,
+				9EC1206D2A9B56A400F0BFBD /* RegisterationController.swift */,
+			);
+			name = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,13 +230,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EC120702A9B651500F0BFBD /* CustomTextField.swift in Sources */,
 				9EC120402A9A704900F0BFBD /* ViewController.swift in Sources */,
+				9EC1206C2A9B569500F0BFBD /* LoginController.swift in Sources */,
 				9EC120672A9B171900F0BFBD /* FeedCell.swift in Sources */,
 				9EC120612A9A766300F0BFBD /* ImageSelectorController.swift in Sources */,
 				9EC1205F2A9A765100F0BFBD /* SearchController.swift in Sources */,
+				9EC120722A9B981B00F0BFBD /* AuthenticationViewModel.swift in Sources */,
 				9EC1203C2A9A704900F0BFBD /* AppDelegate.swift in Sources */,
 				9EC1205D2A9A763C00F0BFBD /* FeedController.swift in Sources */,
 				9EC120652A9A768000F0BFBD /* ProfileController.swift in Sources */,
+				9EC1206E2A9B56A400F0BFBD /* RegisterationController.swift in Sources */,
 				9EC1205B2A9A74E700F0BFBD /* MainTabController.swift in Sources */,
 				9EC120632A9A767300F0BFBD /* NotificationsController.swift in Sources */,
 				9EC120692A9B235E00F0BFBD /* Extensions.swift in Sources */,
