@@ -11,10 +11,13 @@ class Registrationcontroller:UIViewController{
     
     // MARK: - properties
     
+    private var viewModel = RegistrationViewModel()
+    
     private let plusPhotoButton:UIButton={
        
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "plus_photo"), for: .normal)
+        button.addTarget(self, action: #selector(photoAddButtonPressed), for: .touchUpInside)
         button.tintColor = .white
         return button
     }()
@@ -58,6 +61,7 @@ class Registrationcontroller:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureNotificationObservers()
     }
     
     // MARK: - Action
@@ -66,6 +70,32 @@ class Registrationcontroller:UIViewController{
         print("Already have account")
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc func textDidChange(sender:UITextField){
+        print("Debug: Text did change")
+        if sender == emailTextFied{
+            print("Inside Email")
+            viewModel.email = sender.text
+        }else if sender == passwordTextFied{
+            viewModel.password = sender.text
+            print("Inside Password")
+        }else if sender == fullNameTextFied{
+            viewModel.fullname = sender.text
+        }
+        else if sender == userNameTextFied{
+            viewModel.username = sender.text
+        }
+        updateForm()
+    }
+    
+    @objc func photoAddButtonPressed(){
+        print("Debug: show photo add button pressed")
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true)
+    }
+    
     
     // MARK: - Helper
     func configureUI(){
@@ -90,6 +120,43 @@ class Registrationcontroller:UIViewController{
         alreadyHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
     }
     
+    func configureNotificationObservers(){
+        
+        emailTextFied.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextFied.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        fullNameTextFied.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        userNameTextFied.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
     
 }
 
+// MARK: - form view model
+
+extension Registrationcontroller:formViewMode{
+    func updateForm() {
+        signupButton.backgroundColor = viewModel.buttonBackgroundColor
+        signupButton.setTitleColor(viewModel.buttonTintColor, for: .normal)
+        signupButton.isEnabled = viewModel.formIsValid
+    }
+    
+    
+}
+
+
+// MARK: - UIImagepickerDelegate
+extension Registrationcontroller:UIImagePickerControllerDelegate & UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("")
+        
+        guard let selectedImage = info[.editedImage] as? UIImage else{return}
+        plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width/2
+        plusPhotoButton.layer.masksToBounds = true
+        plusPhotoButton.layer.borderColor = UIColor.white.cgColor
+        plusPhotoButton.layer.borderWidth = 2
+        plusPhotoButton.setImage(selectedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        
+        self.dismiss(animated: true)
+    }
+    
+}

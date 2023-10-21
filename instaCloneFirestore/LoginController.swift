@@ -11,6 +11,8 @@ class Logincontroller:UIViewController{
     
     // MARK: - properties
     
+    private var viewModel = loginViewModel()
+    
     private let iconImage:UIImageView={
     let iv = UIImageView(image: UIImage(named: "Instagram_logo_white"))
         iv.contentMode = .scaleAspectFill
@@ -33,10 +35,11 @@ class Logincontroller:UIViewController{
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor.systemIndigo
+        button.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
         button.layer.cornerRadius = 5
         button.setHeight(50)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.isEnabled =  false
         return button
     }()
     
@@ -60,6 +63,7 @@ class Logincontroller:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureNotificationObservers()
     }
     
     // MARK: Actions
@@ -70,6 +74,28 @@ class Logincontroller:UIViewController{
         let controller = Registrationcontroller()
         navigationController?.pushViewController(controller, animated: true)
         
+    }
+    
+    @objc func textDidChange(sender:UITextField){
+        print("Debug: Text did change")
+        if sender == emailTextFied{
+            print("Inside Email")
+            viewModel.email = sender.text
+        }else{
+            viewModel.password = sender.text
+            print("Inside Password")
+        }
+//        print("View model email is",viewModel.email)
+//        print("View model password is",viewModel.password)
+//        if viewModel.formIsValid{
+//            loginButton.backgroundColor = UIColor.systemPurple
+//            loginButton.isEnabled =  true
+//        }else{
+//            loginButton.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
+//            loginButton.isEnabled =  false
+//        }
+        
+        updateForm()
     }
     
     
@@ -102,6 +128,24 @@ class Logincontroller:UIViewController{
         dontHaveAccountButton.centerX(inView: view)
         dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
         
+    }
+    
+    func configureNotificationObservers(){
+        
+        emailTextFied.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextFied.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    
+    
+}
+
+// MARK: - form view model
+
+extension Logincontroller:formViewMode{
+    func updateForm() {
+        loginButton.backgroundColor = viewModel.buttonBackgroundColor
+        loginButton.setTitleColor(viewModel.buttonTintColor, for: .normal)
+        loginButton.isEnabled = viewModel.formIsValid
     }
     
     
